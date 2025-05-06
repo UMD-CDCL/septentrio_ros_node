@@ -37,8 +37,8 @@ from builtin_interfaces.msg import Time
 from sensor_msgs.msg import NavSatFix, NavSatStatus, TimeReference
 from geometry_msgs.msg import TwistStamped
 from rclpy.node import Node
-from reach_ros_node.checksum_utils import check_nmea_checksum
-import reach_ros_node.parser
+from septentrio_ros_node.checksum_utils import check_nmea_checksum
+import septentrio_ros_node.parser
 
 class RosNMEADriver(object):
     def __init__(self,parent_node:Node):
@@ -76,7 +76,7 @@ class RosNMEADriver(object):
             return
         
         # Else we are good, lets try to process this message
-        parsed_sentence = reach_ros_node.parser.parse_nmea_sentence(nmea_string)
+        parsed_sentence = septentrio_ros_node.parser.parse_nmea_sentence(nmea_string)
         if not parsed_sentence:
             #rospy.logwarn("Failed to parse NMEA sentence. Sentence was: %s" % nmea_string)
             self.parent.get_logger().warning("Failed to parse NMEA sentence. Sentence was: %s" % repr(nmea_string))
