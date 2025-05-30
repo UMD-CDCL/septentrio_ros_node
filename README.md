@@ -8,14 +8,13 @@ Right now this supports all NMEA messages from the package, while some are not u
 
 1. Clone this package into your ROS workspace and build it
 2. Turn on your Mosaic X5 RTK module
-3. Make sure the module is configured correctly
-  * 
-4. Set position streaming to "Serial" with
-  * Port: USB to PC
-  * Baud rate: 115200
-  * Format: NMEA
-5. The node automatically finds the device serial port using pyudev (install `pip3 install pyudev` if not installed), and starts it. 
-6. Run using `ros2 run septentrio_ros_node nmea_serial_driver`
+3. Make sure the module is configured correctly. Configuration page can be found at `192.168.3.1` on a browser with the Mosaic X5 connected over the USB C connection.
+  * Enable L3 band by going to Admin > Expert Control > Control Panel > Navigation > Advanced User Setting > Signal/Satellite Tracking, and enable all satellite bands [Check all boxes].
+  * Go to NMEA/SBF Out menu and add a new NMEA steam over USB1 with the `GGA`, `GST` and `VTG` messages at 100msec interval.
+  * Go to Corrections menu and set RTCMv3 input on the USB2 port.
+  * Go to GNSS menu and make sure the positioning mode is set to Rover, RTK enabled and reference position set to auto.
+4. The node automatically finds the device serial port using pyudev (install `pip3 install pyudev` if not installed), and starts it. 
+5. Run using `ros2 run septentrio_ros_node nmea_serial_driver`
 
 ## Driver Details
 
