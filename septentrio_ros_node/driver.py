@@ -167,9 +167,9 @@ class RosNMEADriver(object):
         # Else lets set what variables we can
         data = datag[b'GST']
         # Update the fix message with std
-        self.msg_fix.position_covariance[0] = pow(data['latitude_sigma'],2)
-        self.msg_fix.position_covariance[4] = pow(data['longitude_sigma'],2)
-        self.msg_fix.position_covariance[8] = pow(data['altitude_sigma'],2)
+        self.msg_fix.position_covariance[0] = data['latitude_sigma']
+        self.msg_fix.position_covariance[4] = data['longitude_sigma']
+        self.msg_fix.position_covariance[8] = data['altitude_sigma']
         self.msg_fix.position_covariance_type = NavSatFix.COVARIANCE_TYPE_APPROXIMATED
         self.has_std = True
 
